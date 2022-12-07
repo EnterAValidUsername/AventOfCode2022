@@ -11,7 +11,7 @@ int main() {
 	while (fin >> input) {
 		int N = input.size();
 		
-		map < char, int > m;
+		unordered_map < char, int > m;
 		
 		for (int i = 0; i < N/2; i++) {
 			m[input[i]] = 0; // a random number that we won't mind, which only purpose it's to create the item in our map
