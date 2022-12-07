@@ -11,15 +11,14 @@ int main() {
 	while (fin >> input) {
 		int N = input.size();
 		
-		map < int, char > m;
+		map < char, int > m;
 		
 		for (int i = 0; i < N/2; i++) {
-			m[i] = input[i];
+			m[input[i]] = 0; // a random number that we won't mind, which only purpose it's to create the item in our map
 		}
 		
 		for (int i = N/2; i < N; i++) {
-			if (m.count(input[i])) { // non entra mai qui
-				cout << "entrato: " << input[i] << endl;
+			if (m.count(input[i])) {
 				if ((int)input[i] >= 65 and (int)input[i] <= 90) {
 					ans += ((int)input[i] - 65 + 26 + 1);
 					/* 
