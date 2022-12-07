@@ -11,14 +11,14 @@ int main() {
 	while (fin >> input) {
 		int N = input.size();
 		
-		unordered_map < char, int > m;
+		unordered_set < char > s;
 		
 		for (int i = 0; i < N/2; i++) {
-			m[input[i]] = 0; // a random number that we won't mind, which only purpose it's to create the item in our map
+			s.insert(input[i]);
 		}
 		
 		for (int i = N/2; i < N; i++) {
-			if (m.count(input[i])) {
+			if (s.count(input[i])) {
 				if ((int)input[i] >= 65 and (int)input[i] <= 90) {
 					ans += ((int)input[i] - 65 + 26 + 1);
 					/* 
