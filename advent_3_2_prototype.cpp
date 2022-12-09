@@ -36,12 +36,12 @@ main() {
 		// if the value of the cell i is pointing towards (in Elf1), is equal to any of the elements in Elf2 and Elf3 then //*calculate priority points*
 			if (Elf2.count(*i) && Elf3.count(*i)) {
 				if (*i >= 65 and *i <= 90) {
-					cout << (int) *i - 65 + 26 + 1 << ", sono tra 65 e 90; ";
-					ans += (int) *i - 65 + 26 + 1;
+					cout << *i - 65 + 26 + 1 << ": " << *i << ", tra 65 e 90; ";
+					ans += *i - 65 + 26 + 1;
 				}
 				else if (*i >= 97 and *i <= 122) {
-					cout << (int) *i - 97 + 1 << ", sono tra 97 e 122; ";
-					ans += (int) *i - 97 + 1;
+					cout << *i - 97 + 1 << ": " << *i << ", tra 97 e 122; ";
+					ans += *i - 97 + 1;
 				}
 				break; 
 			}
@@ -54,5 +54,7 @@ main() {
 	all of the numbers that you see in the calculations above referres to the conversion numbers from the
 	complete ascii table setting the values of a = 97, z = 112, A = 65, and Z = 90
 	*/
+	
+	// the error it causes is that after the first conversion letters converted are messed up
 }
 
