@@ -1,0 +1,35 @@
+line 10: i'm ending the while loop with the number of columns that contain 
+every box, stored inside input
+
+line 14:  i'm setting the dimention of our vector of queues equal to the 
+		last number of the last row of the input grid: so size() - 1 would 
+		normally suffice for reaching the last element of input (that 
+		stores the row full of numbers under the grid right now), 
+		but because a queue for existing needs at least a block in it, and 
+		all blocks are made of 3 char, and the number that identifies the 
+		column they are in, is always alligned with the middle character, 
+		then in the last row, the last number will be at the second from 
+		last position, because the last character will be " " for filling 
+		the gap left by the ] in the line above
+
+line 16: for simplification of the input i'm inserting in every queue, the 
+		char that all blocks contain. i chose a first in first out struct 
+		becase in this way i can insert the first element of a column from 
+		above and keep inserting elements discending beeing sure that the first 
+		element i inserted is the only one that can be moved
+
+line 18: for this process i'm using a 2 nestsed 'for' loops, the first iterates 
+		trough 'x's and the j iterates trough the '-y's, inserting only characters
+		form the strings taken in input, skipping brackets and spaces
+
+line 24-26: initialization of 2 temporary variables that will help us taking input
+			only for making it proceeding, without caring about what they're
+			containing ('trash' for strings and 'bin' for integers); then the
+			only two variables that we will actually need, 'first' is the variable
+			that will contain the index of the queue which top element will
+			be moved from, and 'last' the index of the queue that will be reciving
+			the addictional element from its top
+
+line 28-31: executing the given commands
+
+line 33-35: outputting every queue's top element as requested
