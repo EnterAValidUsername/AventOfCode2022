@@ -9,33 +9,39 @@ int main() {
 	
 	while (getline(fin, input) && input.find(" 1") == -1) {
 		s.push_back(input);
-	} 
+	}
 	
-	int N = input[input.size() - 2]; 
+	int N = input[input.size() - 2];
 	
-	vector < queue < char > > v(N);
+	vector < stack < char > > v(N);
 	
-	for (int i = 2; i < N * 3 + N - 1; i += 4) {
-		for (int j = 0; j < s.size(); j++) {
-			v[i].push(s[j][i]);
+	for (int i = 1; i < input.size(); i += 4) {
+		for (int j = s.size() - 1; j >= 0; j--) {
+			if (s[j][i] != ' ') {
+				v[i / 4].push(s[j][i]);
+			}
 		}
 	}
 	
+	getline(fin, input);
+	
 	string trash;
-	int bin;
+	int num;
 	char First, Last;
 	
-	while (fin >> trash >> bin >> trash >> First >> trash >> Last) {
-		v[Last].push(v[First].front());
-		v[First].pop();
+	while (fin >> trash >> num >> trash >> First >> trash >> Last) {
+		Last--; First--;
+		for (int i = 0; i < num; i++) {
+			v[Last].push(v[First].top()); // errore di accesso alla memoria
+			v[First].pop();
+		}
 	}
 	
 	for (int i = 0; i < v.size(); i++) {
-		cout << v[i].front();
+		cout << v[i].top();
 	}
 	
 	// si incazza, ha problemi con accessi di memoria sbagliati probabilmente
 
 	return 0;
 }
-

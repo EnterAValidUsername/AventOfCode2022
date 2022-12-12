@@ -20,7 +20,11 @@ line 16: for simplification of the input i'm inserting in every queue, the
 
 line 18: for this process i'm using a 2 nestsed 'for' loops, the first iterates 
 		trough 'x's and the j iterates trough the '-y's, inserting only characters
-		form the strings taken in input, skipping brackets and spaces
+		form the strings taken in input, skipping brackets and spaces.
+		the 'x's space between 0 (the position of the first bracket) and 
+		N * 3 - N - 1 because: every box is composed by 3 char, and this happens
+		N times, addictionally, separating boxes we have a space for each couplet of
+		boxes, so they are N - 1
 
 line 24-26: initialization of 2 temporary variables that will help us taking input
 			only for making it proceeding, without caring about what they're
