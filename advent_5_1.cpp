@@ -11,7 +11,7 @@ int main() {
 		s.push_back(input);
 	}
 	
-	int N = input[input.size() - 2];
+	int N = (int)input[input.size() - 2] - 48;
 	
 	vector < stack < char > > v(N);
 	
@@ -27,12 +27,12 @@ int main() {
 	
 	string trash;
 	int num;
-	char First, Last;
+	int First, Last;
 	
 	while (fin >> trash >> num >> trash >> First >> trash >> Last) {
 		Last--; First--;
 		for (int i = 0; i < num; i++) {
-			v[Last].push(v[First].top()); // errore di accesso alla memoria
+			v[Last].push(v[First].top());
 			v[First].pop();
 		}
 	}
@@ -41,7 +41,5 @@ int main() {
 		cout << v[i].top();
 	}
 	
-	// si incazza, ha problemi con accessi di memoria sbagliati probabilmente
-
 	return 0;
 }
