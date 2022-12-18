@@ -1,47 +1,80 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+#ifdef EVAL
 ifstream fin ("input.txt");
+ofstream fout ("output.txt");
+#define cin fin
+#define cout fout
+#endif
+
+map < string, vector < string > > graph;
+
+map < string, bool > visited; // contains the state of a node, whether is visited or not
+map < string, int > memo_wh; // memoization for the wheights calculation
+
+int dfs (string name) {
+	visited[name] = true;
+	
+	int S = graph[name].size();
+	
+	if (S == 0 && name[0] != 'd') { // if the adjacencies of a node are null and it isn't a directory
+		if (memo_wh.find(name) != memo_wh.end()) {
+			return memo_wh[name];
+		}
+		else {
+			int temp = name.find(' ');
+			memo_wh[name] = stoi(name.substr(0, temp - 1));
+		}
+	}
+	if (memo_wh.find(name) != memo_wh.end()) {
+		return memo_wh[name];
+	}
+	else {
+		for (int i = 0; i < S; i++) {
+			
+			if (visited[graph[name][i]] == false) {
+				memo_wh[name] += dfs(graph[name][i]);
+			}
+		}
+	}
+}
 
 int main() {
 	
 	string input;
-	vector < string > cmds;
+	string cd, pd; // current directory, previous directory
+	// i'm going to set them the same value if there isn't any previous directory
+	bool taken = false;
 	
-	unordered_map < string, vector < string > > adj;
-	
-	while (getline(fin, input)) {
-		cmds.push_back(input);
-	}
-	
-	int K = cmds.size();
-	for (int k = 0; k < K; k++) {
-		int N = cmds[k].size();
-		string name;
+	while (!fin.eof()) { // it runs until the end of the input file is reached
+		if (taken == false) getline(fin, input);
 		
-		if (cmds[k].find("$ cd") == 0) { // if the subs is found and starts at index 0 then...
-			if (cmds[k].find("..") == 6) {
-				// ??
-			}
-			else if (cmds[k].find("/") == 6) {
-				// ??
-			}
-			else {
-				name = cmds[k].substr(7);
-				k += 2; // the next line will always be a "$ ls" so i'm skipping to the line after it
-				
-				vector < string > temp;
-				
-				while (cmds[k].find("$") == -1) {
-					temp.push_back(cmds[k]);
-					k++;
+		if (input[0] == '$') {
+			if (input.find("$ cd") == 0) {
+				if (input.find("/") == 6) {
+					cd = "/"; pd = "/";
 				}
-				k--; // this is due to the fact that the while loop will terminate with the next command already inserted
 				
-				adj.insert({name, temp});
+				if (input.find("..") == 6) {
+					cd = pd; pd = cd;
+				}
+				
+				else {
+					cd = input.substr(6);
+				}
+			}
+			else if (input.find("$ ls") == 0) {
+				while (getline(fin, input) && input[0] != '$') {
+					graph[cd].push_back(input);
+					taken = true;
+				}
 			}
 		}
+		// otherwise error!
 	}
+	
+	dfs("/");
 
 	return 0;
 }
