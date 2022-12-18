@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// it's still bugged
+
 #ifdef EVAL
 ifstream fin ("input.txt");
 ofstream fout ("output.txt");
