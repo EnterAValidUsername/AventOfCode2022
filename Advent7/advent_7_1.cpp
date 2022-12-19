@@ -51,6 +51,7 @@ int main() {
 	
 	while (!fin.eof()) { // it runs until the end of the input file is reached
 		if (taken == false) getline(fin, input);
+		taken = false;
 		
 		if (input[0] == '$') {
 			if (input.find("$ cd") == 0) {
