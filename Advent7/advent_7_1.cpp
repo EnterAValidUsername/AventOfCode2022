@@ -48,6 +48,7 @@ int main() {
 	string cd, pd; // current directory, previous directory
 	// i'm going to set them the same value if there isn't any previous directory
 	bool taken = false;
+	map < string, string > ancestors;
 	
 	while (!fin.eof()) { // it runs until the end of the input file is reached
 		if (taken == false) getline(fin, input);
@@ -70,6 +71,7 @@ int main() {
 			else if (input.find("$ ls") == 0) {
 				while (getline(fin, input) && input[0] != '$') {
 					graph[cd].push_back(input);
+					ancestor[input] = cd; // va ripulito, scrivi ripulisci.
 					taken = true;
 				}
 			}
