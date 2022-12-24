@@ -19,7 +19,7 @@ int main() {
 		vector < pair < int, bool > > temp(S);
 		
 		for (int i = 0; i < S; i++) {
-			temp[i].first = (int)input[i] - 48;
+			temp[i].first = (int)input[i] - 48; // ascii conversion from char numbers to real numbers :)
 			temp[i].second = false;
 		}
 		
@@ -35,9 +35,14 @@ int main() {
 		ans += 2;
 		
 		int current_max = grid[i][0].first;
-		int max;
+		int max = 9;
 		
 		for (int j = 1; j < S; j++) { // first and last already checked
+			if (grid[i][j].first == max) {
+				current_max = max;
+				break;
+			}
+			
 			if (grid[i][j].first > current_max) {
 				current_max = grid[i][j].first;
 				
@@ -76,9 +81,14 @@ int main() {
 		}
 		
 		int current_max = grid[0][j].first;
-		int max;
+		int max = 9;
 		
-		for (int i = 1; i < S - 1; i++) {
+		for (int i = 1; i < S; i++) {
+			if (grid[i][j].first == max) {
+				current_max = max;
+				break;
+			}
+			
 			if (grid[i][j].first > current_max) {
 				current_max = grid[i][j].first;
 				
@@ -107,7 +117,7 @@ int main() {
 	cout << ans;
 	
 	// columns: top - bottom, bottom - top; it compiles correctly;
-	// bugged: the example is right, but the solution for their input is too low
+	// bugged: the example is right, but the solution for their input is wrong
 
 	return 0;
 }
